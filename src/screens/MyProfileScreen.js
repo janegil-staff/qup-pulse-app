@@ -21,7 +21,7 @@ import {
   Alert,
   ActivityIndicator,
   RefreshControl,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { LinearGradient } from "expo-linear-gradient";
@@ -35,11 +35,12 @@ import { avatarSource } from "../lib/avatar.js";
 import VerifiedBadge from "../components/VerifiedBadge.js";
 import InterestsEditor from "../components/InterestsEditor.js";
 
-const { width } = Dimensions.get("window");
-const HERO_H = Math.round(width * 1.15);
-
 export default function MyProfileScreen({ navigation }) {
   const styles = useStyles(stylesFactory);
+  // Live width — a module-level Dimensions.get() freezes the portrait value and
+  // leaves the hero the wrong height after an iPad rotation.
+  const { width } = useWindowDimensions();
+  const HERO_H = Math.round(width * 1.15);
   const { t } = useLang();
   const { user, hydrate, logout } = useAuth();
 
@@ -212,7 +213,7 @@ export default function MyProfileScreen({ navigation }) {
         }
       >
         {/* ── Hero ─────────────────────────────── */}
-        <View style={styles.hero}>
+        <View style={[styles.hero, { height: HERO_H }]}>
           <Image source={avatarSource(user)} style={styles.heroImg} />
           <LinearGradient
             colors={["transparent", "rgba(0,0,0,0.75)"]}
@@ -480,7 +481,6 @@ const stylesFactory = ({ colors }) =>
 
     hero: {
       width: "100%",
-      height: HERO_H,
       position: "relative",
       backgroundColor: colors.surface,
     },

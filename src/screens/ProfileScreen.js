@@ -11,7 +11,7 @@ import {
   Pressable,
   Alert,
   ActivityIndicator,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { api } from "../api/client.js";
@@ -25,11 +25,13 @@ import PostCard from "../components/PostCard.js";
 import InterestChips from "../components/InterestChips.js";
 import useFollow from "../hooks/useFollow.js";
 
-const { width } = Dimensions.get("window");
-const HERO_H = Math.round(width * 1.1);
-
 export default function ProfileScreen({ route, navigation }) {
   const styles = useStyles(stylesFactory);
+  // Read live: Dimensions.get() at module scope freezes the portrait width and
+  // the hero carousel then pages against a stale page width after an iPad
+  // rotation. useWindowDimensions re-renders on every size change.
+  const { width } = useWindowDimensions();
+  const HERO_H = Math.round(width * 1.1);
   const username = route?.params?.username;
   const { t } = useLang();
   const [profile, setProfile] = useState(route?.params?.user ?? null);
@@ -263,7 +265,7 @@ export default function ProfileScreen({ route, navigation }) {
         showsVerticalScrollIndicator={false}
       >
         {/* Hero gallery */}
-        <View style={styles.hero}>
+        <View style={[styles.hero, { width, height: HERO_H }]}>
           {photos.length > 0 ? (
             <ScrollView
               ref={scrollRef}
@@ -277,12 +279,15 @@ export default function ProfileScreen({ route, navigation }) {
                 <Image
                   key={`${photo.url}-${i}`}
                   source={{ uri: photo.url }}
-                  style={styles.heroImg}
+                  style={[styles.heroImg, { width, height: HERO_H }]}
                 />
               ))}
             </ScrollView>
           ) : (
-            <Image source={avatarSource(profile)} style={styles.heroImg} />
+            <Image
+              source={avatarSource(profile)}
+              style={[styles.heroImg, { width, height: HERO_H }]}
+            />
           )}
 
           <LinearGradient
@@ -454,12 +459,10 @@ const stylesFactory = ({ colors, spacing, radius }) =>
     errorText: { color: colors.textDim, fontSize: 15, textAlign: "center" },
 
     hero: {
-      width,
-      height: HERO_H,
       position: "relative",
       backgroundColor: colors.surface,
     },
-    heroImg: { width, height: HERO_H },
+    heroImg: {},
     heroEmpty: {
       alignItems: "center",
       justifyContent: "center",

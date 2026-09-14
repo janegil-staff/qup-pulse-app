@@ -2,7 +2,7 @@
   "expo": {
     "name": "Qup Pulse",
     "slug": "qup-pulse",
-    "version": "2.1",
+    "version": "2.5",
     "orientation": "default",
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "automatic",
@@ -17,7 +17,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.qup.pulse",
       "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "Allow photo access to send pictures in chat.",
+        "NSLocationWhenInUseUsageDescription": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and Discovery shows profiles in your area first. Your position is rounded before it is stored, and you can pick a place manually instead.",
+        "NSPhotoLibraryUsageDescription": "Qup Pulse needs access to your photo library so you can choose pictures to share. For example, you can pick a photo from your library to set as your profile picture, attach to a post, or send in a chat. Only the photos you select are uploaded.",
         "ITSAppUsesNonExemptEncryption": false
       }
     },
@@ -35,17 +36,26 @@
     },
     "plugins": [
       [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and Discovery shows profiles in your area first. Your position is rounded before it is stored, and you can pick a place manually instead.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+
+      [
         "expo-image-picker",
         {
-          "photosPermission": "Allow photo access to send pictures in chat."
+          "photosPermission": "Qup Pulse needs access to your photo library so you can choose pictures to share. For example, you can pick a photo from your library to set as your profile picture, attach to a post, or send in a chat. Only the photos you select are uploaded."
         }
       ],
 
       [
         "@config-plugins/react-native-webrtc",
         {
-          "cameraPermission": "Qup Pulse bruker kameraet for videosamtaler.",
-          "microphonePermission": "Qup Pulse bruker mikrofonen for samtaler."
+          "cameraPermission": "Qup Pulse needs access to your camera for video calls. For example, when you start or answer a video call with someone you have matched with, your camera sends your video to that person. Your camera is never used outside an active call.",
+          "microphonePermission": "Qup Pulse needs access to your microphone for calls. For example, when you start or answer a voice or video call, your microphone sends your audio to the person you are calling. Your microphone is never used outside an active call."
         }
       ]
     ],

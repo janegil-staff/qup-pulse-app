@@ -11,7 +11,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   RefreshControl,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import * as Location from "expo-location";
 import { api } from "../api/client.js";
@@ -21,13 +21,16 @@ import { avatarSource } from "../lib/avatar.js";
 import VerifiedBadge from "../components/VerifiedBadge.js";
 import { useLang } from "../context/LangContext.js";
 import ProfilePrompt from "../components/ProfilePrompt.js";
-const { width } = Dimensions.get("window");
 const GAP = 8;
 const COLS = 3;
-const CARD_W = (width - GAP * (COLS + 1)) / COLS;
 
 export default function DiscoveryScreen({ navigation }) {
   const styles = useStyles(stylesFactory);
+  // Grid maths from the live window width. Taken once at module scope it keeps
+  // the portrait card width after an iPad rotation, leaving a three-column grid
+  // sized for a phone sitting in the top-left of a landscape iPad.
+  const { width } = useWindowDimensions();
+  const CARD_W = (width - GAP * (COLS + 1)) / COLS;
   const { t, lang, setLang } = useLang();
 
   const [people, setPeople] = useState([]);
@@ -106,10 +109,13 @@ export default function DiscoveryScreen({ navigation }) {
   function renderCard({ item }) {
     const name = item.displayName || item.username || "Someone";
     return (
-      <Pressable style={styles.card} onPress={() => openProfile(item)}>
+      <Pressable
+        style={[styles.card, { width: CARD_W }]}
+        onPress={() => openProfile(item)}
+      >
         <Image source={avatarSource(item)} style={styles.photo} />
         {item.emailVerified ? (
-          <View style={styles.verifiedPill}>
+          <View style={[styles.verifiedPill, { maxWidth: CARD_W - 32 }]}>
             <VerifiedBadge size={10} />
             <Text style={styles.verifiedPillText} numberOfLines={1}>
               {t.badgeEmailConfirmed}
@@ -189,7 +195,6 @@ const stylesFactory = ({ colors, radius }) =>
       position: "absolute",
       top: 6,
       left: 6,
-      maxWidth: CARD_W - 32,
       flexDirection: "row",
       alignItems: "center",
       gap: 4,
@@ -215,7 +220,6 @@ const stylesFactory = ({ colors, radius }) =>
     },
     bannerText: { color: colors.accent, fontSize: 13, fontWeight: "700" },
     card: {
-      width: CARD_W,
       aspectRatio: 1,
       borderRadius: 12,
       overflow: "hidden",
