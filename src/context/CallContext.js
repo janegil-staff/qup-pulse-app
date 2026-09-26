@@ -12,6 +12,7 @@ import React, {
 import { Platform, PermissionsAndroid } from "react-native";
 import CallService from "../services/webrtc/CallService";
 import { useAuth } from "./AuthContext";
+import { FEATURES } from "../config/features.js";
 import { api } from "../api/client.js";
 import { getChatSocket, connectChatSocket } from "../api/socket.js";
 
@@ -50,6 +51,29 @@ export const CALL_PHASE = {
 };
 
 const CallContext = createContext(null);
+
+// How long to wait for the server to acknowledge call:invite / call:accept.
+const SIGNAL_TIMEOUT_MS = 15000;
+
+// The incoming-call event only carries the caller's id. Look their name up in
+// the conversation list so the callee sees who is calling, not "Unknown".
+async function lookupPeer(conversationId, callerId) {
+  try {
+    const data = await api.getConversations();
+    const all = [...(data?.conversations || []), ...(data?.requests || [])];
+    const convo = all.find((c) => String(c.id ?? c._id) === String(conversationId));
+    const other = convo?.otherUser;
+    if (!other) return null;
+    return {
+      id: String(other.id ?? other._id ?? callerId),
+      displayName: other.displayName,
+      username: other.username,
+      avatarUrl: other.avatarUrl,
+    };
+  } catch {
+    return null;
+  }
+}
 
 const INITIAL_STATE = {
   phase: CALL_PHASE.IDLE,
@@ -158,7 +182,7 @@ export function CallProvider({ children }) {
     pendingOfferRef.current = null;
     phaseRef.current = CALL_PHASE.IDLE;
 
-    setState({ ...INITIAL_STATE, lastEndReason: reason });
+    setState({ ...INITIAL_STATE, lastEndReason: reason, endedAt: Date.now() });
   }, []);
 
   /**
@@ -255,10 +279,19 @@ export function CallProvider({ children }) {
         lastEndReason: null,
       });
 
-      socket.emit(
+      // Timeout so a server that never answers can't leave the caller stuck
+      // on "Calling…" forever (which is exactly what happened while the
+      // call handlers weren't registered on the API).
+      socket.timeout(SIGNAL_TIMEOUT_MS).emit(
         "call:invite",
         { conversationId, media },
-        async (response) => {
+        async (timeoutErr, response) => {
+          if (timeoutErr) {
+            log("invite timed out — server didn't answer");
+            teardown("no_server_response");
+            patch({ error: "no_server_response" });
+            return;
+          }
           if (!response?.ok) {
             log("invite rejected", response?.error);
             teardown(response?.error || "invite_failed");
@@ -338,7 +371,12 @@ export function CallProvider({ children }) {
       return;
     }
 
-    socket.emit("call:accept", { callId }, async (response) => {
+    socket.timeout(SIGNAL_TIMEOUT_MS).emit("call:accept", { callId }, async (timeoutErr, response) => {
+      if (timeoutErr) {
+        log("accept timed out — server didn't answer");
+        teardown("no_server_response");
+        return;
+      }
       if (!response?.ok) {
         log("accept rejected", response?.error);
         teardown(response?.error || "accept_failed");
@@ -365,7 +403,9 @@ export function CallProvider({ children }) {
   const declineCall = useCallback(() => {
     const callId = callIdRef.current;
     if (callId) socket?.emit("call:decline", { callId });
-    teardown("declined");
+    // Distinct from the server's "declined" so the callee isn't told their
+    // own decline happened (CallHost only shows the remote one).
+    teardown("declined_by_me");
   }, [socket, teardown]);
 
   const endCall = useCallback(() => {
@@ -407,6 +447,13 @@ export function CallProvider({ children }) {
     const onIncoming = (call) => {
       log("incoming", call.callId, call.media);
 
+      // Calls switched off in this build: decline straight away so the caller
+      // gets "unavailable" instead of the call ringing into nothing.
+      if (!FEATURES.calls) {
+        socket.emit("call:decline", { callId: call.callId });
+        return;
+      }
+
       // Already busy — tell the server so the caller gets a proper "busy".
       if (callIdRef.current || phaseRef.current !== CALL_PHASE.IDLE) {
         socket.emit("call:decline", { callId: call.callId });
@@ -425,6 +472,10 @@ export function CallProvider({ children }) {
         peer: { _id: call.callerId },
         error: null,
         lastEndReason: null,
+      });
+
+      lookupPeer(call.conversationId, call.callerId).then((peer) => {
+        if (peer && callIdRef.current === call.callId) patch({ peer });
       });
     };
 

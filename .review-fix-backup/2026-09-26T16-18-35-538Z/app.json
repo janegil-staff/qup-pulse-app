@@ -1,0 +1,69 @@
+{
+  "expo": {
+    "name": "Qup Pulse",
+    "slug": "qup-pulse",
+    "version": "2.5",
+    "orientation": "default",
+    "icon": "./assets/images/logo.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "quppulse",
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0e1116"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.qup.pulse",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and Discovery shows profiles in your area first. Your position is rounded before it is stored, and you can pick a place manually instead.",
+        "NSPhotoLibraryUsageDescription": "Qup Pulse needs access to your photo library so you can choose pictures to share. For example, you can pick a photo from your library to set as your profile picture, attach to a post, or send in a chat. Only the photos you select are uploaded.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.qup.pulse",
+      "softwareKeyboardLayoutMode": "resize",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/logo.png",
+        "backgroundColor": "#0e1116"
+      },
+      "permissions": [
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and Discovery shows profiles in your area first. Your position is rounded before it is stored, and you can pick a place manually instead.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Qup Pulse needs access to your photo library so you can choose pictures to share. For example, you can pick a photo from your library to set as your profile picture, attach to a post, or send in a chat. Only the photos you select are uploaded."
+        }
+      ],
+
+      [
+        "@config-plugins/react-native-webrtc",
+        {
+          "cameraPermission": "Qup Pulse needs access to your camera for video calls. For example, when you start or answer a video call with someone you have matched with, your camera sends your video to that person. Your camera is never used outside an active call.",
+          "microphonePermission": "Qup Pulse needs access to your microphone for calls. For example, when you start or answer a voice or video call, your microphone sends your audio to the person you are calling. Your microphone is never used outside an active call."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "508f09c4-d482-43d9-92c7-7605aa41dc5a"
+      }
+    },
+    "owner": "janstovr"
+  }
+}

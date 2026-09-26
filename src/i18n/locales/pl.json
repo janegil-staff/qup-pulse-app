@@ -80,7 +80,7 @@
   "stepLocation": "Lokalizacja",
   "searchCityPlaceholder": "Szukaj miasta lub obszaru…",
   "enableLocation": "Użyj mojej obecnej lokalizacji",
-  "locationPrivacy": "Wyszukaj obszar, w którym chcesz się pojawiać. Twoja dokładna pozycja nigdy nie jest zapisywana.",
+  "locationPrivacy": "Zamelduj się, aby osoby w pobliżu mogły cię znaleźć. Lokalizacja jest wysyłana tylko przy zameldowaniu, a twoja dokładna pozycja nigdy nie jest zapisywana.",
   "noPlacesFound": "Nie znaleziono miejsc.",
   "locationDenied": "Zezwól na dostęp do lokalizacji, aby użyć swojej obecnej pozycji.",
   "locationTimeout": "Pobieranie lokalizacji trwało zbyt długo. Spróbuj ponownie lub wyszukaj swój obszar.",
@@ -347,5 +347,21 @@
     "missed": "Nieodebrane",
     "groupNotSupported": "Połączenia są dostępne tylko w rozmowach jeden na jeden.",
     "noConnection": "Brak połączenia. Spróbuj ponownie."
-  }
+  },
+  "shareLocationTitle": "Pokazywać cię osobom w pobliżu?",
+  "shareLocationBody": "Gdy się zameldujesz, osoby w pobliżu mogą znaleźć twój profil w Odkrywaj. Nie zobaczą, gdzie jesteś ani jak daleko. Twoja lokalizacja aktualizuje się tylko po stuknięciu Zamelduj się, nigdy automatycznie. Możesz korzystać z aplikacji, nawet jeśli odmówisz.",
+  "shareLocationAllow": "Zezwól",
+  "shareLocationDecline": "Nie zezwalaj",
+  "checkIn": "Zamelduj się",
+  "checkInHere": "Zamelduj się tutaj",
+  "checkInPickPlace": "Wybierz miejsce",
+  "checkInBarTitle": "Pozwól się znaleźć osobom w pobliżu",
+  "checkInBarSub": "Twoja lokalizacja aktualizuje się tylko po stuknięciu Zamelduj się.",
+  "lastCheckIn": "Ostatnie zameldowanie {time}",
+  "checkInFailed": "Nie udało się zameldować",
+  "shareLocationSetting": "Pokazuj mnie osobom w pobliżu",
+  "shareLocationSettingSub": "Gdy wyłączone, twoja lokalizacja nigdy nie jest wysyłana. Ostatnie zameldowanie obowiązuje do następnego.",
+  "notNow": "Nie teraz",
+  "checkInRowLabel": "Zameldowanie",
+  "needsLocationDiscover": "Zamelduj się lub stuknij tytuł, aby przeglądać obszar i zobaczyć osoby w pobliżu."
 }

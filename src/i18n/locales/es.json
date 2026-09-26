@@ -80,7 +80,7 @@
   "stepLocation": "Ubicación",
   "searchCityPlaceholder": "Busca una ciudad o zona…",
   "enableLocation": "Usar mi ubicación actual",
-  "locationPrivacy": "Busca la zona en la que quieres aparecer. Tu posición exacta nunca se almacena.",
+  "locationPrivacy": "Haz check-in para que las personas cercanas te encuentren. Tu ubicación solo se envía al hacer check-in y tu posición exacta nunca se guarda.",
   "noPlacesFound": "No se encontraron lugares.",
   "locationDenied": "Permite el acceso a la ubicación para usar tu posición actual.",
   "locationTimeout": "Obtener la ubicación tardó demasiado. Inténtalo de nuevo, o busca tu zona.",
@@ -347,5 +347,21 @@
     "missed": "Perdida",
     "groupNotSupported": "Las llamadas solo están disponibles en conversaciones individuales.",
     "noConnection": "Sin conexión. Inténtalo de nuevo."
-  }
+  },
+  "shareLocationTitle": "¿Mostrarte a personas cercanas?",
+  "shareLocationBody": "Cuando haces check-in, las personas cercanas pueden encontrar tu perfil en Descubrir. No verán dónde estás ni a qué distancia. Tu ubicación solo se actualiza cuando tocas Hacer check-in, nunca automáticamente. Puedes seguir usando la app si dices que no.",
+  "shareLocationAllow": "Permitir",
+  "shareLocationDecline": "No permitir",
+  "checkIn": "Hacer check-in",
+  "checkInHere": "Check-in donde estoy",
+  "checkInPickPlace": "Elegir un lugar",
+  "checkInBarTitle": "Deja que te encuentren cerca",
+  "checkInBarSub": "Tu ubicación solo se actualiza cuando tocas Hacer check-in.",
+  "lastCheckIn": "Último check-in {time}",
+  "checkInFailed": "No se pudo hacer check-in",
+  "shareLocationSetting": "Mostrarme a personas cercanas",
+  "shareLocationSettingSub": "Desactivado, tu ubicación nunca se envía. Tu último check-in se mantiene hasta que hagas otro.",
+  "notNow": "Ahora no",
+  "checkInRowLabel": "Check-in",
+  "needsLocationDiscover": "Haz check-in, o toca el título para explorar una zona, para ver personas cercanas."
 }

@@ -44,6 +44,7 @@ import MessageActionSheet from "../components/MessageActionSheet.js";
 import useTyping from "../hooks/useTyping.js";
 import TypingIndicator from "../components/TypingIndicator.js";
 import { useCall, CALL_PHASE } from "../context/CallContext.js";
+import { FEATURES } from "../config/features.js";
 
 export default function ChatScreen({ route, navigation }) {
   console.log("[ChatScreen] render");
@@ -208,7 +209,7 @@ export default function ChatScreen({ route, navigation }) {
   // whether a call is actually allowed here (both sides must have messaged);
   // if it rejects call:invite, CallContext tears the attempt down cleanly.
   const canStartCall = !!peerId && phase === CALL_PHASE.IDLE;
-  const callButton = peerId ? (
+  const callButton = FEATURES.calls && peerId ? (
     <Pressable
       onPress={() =>
         startCall({

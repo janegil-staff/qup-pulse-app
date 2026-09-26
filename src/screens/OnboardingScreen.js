@@ -4,9 +4,10 @@
 // The account is created at the end of step 1, so every later step saves
 // directly to the server and the user can bail and resume.
 //
-// Location has no Skip: getDeck() throws without coordinates, so a skipped
-// location means the first Discover load is an error screen. Photos and bio
-// are genuinely optional; location is not.
+// Location CAN be skipped ("Not now") — App Review 5.1.2(i) requires that the
+// user can decline being shown to others. Continue asks that consent
+// (declinable) and makes the first check-in. A user who skips has no location
+// on the server; DiscoveryScreen explains how to check in instead of erroring.
 //
 // Styles go through useStyles(stylesFactory), NOT a module-scope
 // `const C = theme.colors`. That snapshot is taken at import time, before
@@ -34,6 +35,11 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
+import {
+  askLocationConsent,
+  setLocationConsent,
+  sendCheckIn,
+} from "../lib/locationSharing.js";
 import Svg, { Path, Circle } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuth } from "../context/AuthContext.js";
@@ -431,29 +437,23 @@ export default function OnboardingScreen({ navigation, route }) {
     }
   };
 
-  // Step 3 → commit the staged pick, then advance.
+  // Step 3 → ask consent to be shown nearby, then send the staged pick.
+  // Declining is fine: the user continues to step 4 and nothing is sent.
   const submitStep3 = async () => {
     setError("");
     if (!picked) {
       setError(t.locationRequired);
       return;
     }
+    const yes = await askLocationConsent(t);
+    await setLocationConsent(yes);
+    if (!yes) {
+      setStep(4);
+      return;
+    }
     setLoading(true);
     try {
-      if (picked.gps) {
-        await api.setLocation({
-          lat: picked.lat,
-          lng: picked.lng,
-          mode: "gps",
-        });
-      } else {
-        await api.setLocation({
-          lat: picked.lat,
-          lng: picked.lng,
-          name: picked.name,
-          mode: "manual",
-        });
-      }
+      await sendCheckIn(picked);
       setStep(4);
     } catch (e) {
       setError(e?.message ?? t.couldNotFinish);
@@ -973,6 +973,21 @@ export default function OnboardingScreen({ navigation, route }) {
                 ) : (
                   <Text style={s.btnText}>{t.continue.toUpperCase()} →</Text>
                 )}
+              </TouchableOpacity>
+
+              {/* Decline path — required by App Review 5.1.2(i). */}
+              <View style={{ height: 16 }} />
+              <TouchableOpacity
+                onPress={
+                  !loading
+                    ? () => {
+                        setLocationConsent(false).catch(() => {});
+                        setStep(4);
+                      }
+                    : undefined
+                }
+              >
+                <Text style={s.alreadyText}>{t.notNow}</Text>
               </TouchableOpacity>
             </>
           )}

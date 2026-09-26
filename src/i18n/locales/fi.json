@@ -80,7 +80,7 @@
   "stepLocation": "Sijainti",
   "searchCityPlaceholder": "Hae kaupunkia tai aluetta…",
   "enableLocation": "Käytä nykyistä sijaintiani",
-  "locationPrivacy": "Hae aluetta, jolla haluat näkyä. Tarkkaa sijaintiasi ei koskaan tallenneta.",
+  "locationPrivacy": "Kirjaudu sijaintiin, jotta lähellä olevat löytävät sinut. Sijaintisi lähetetään vain kirjautuessasi, eikä tarkkaa sijaintiasi tallenneta koskaan.",
   "noPlacesFound": "Paikkoja ei löytynyt.",
   "locationDenied": "Salli sijainnin käyttö käyttääksesi nykyistä sijaintiasi.",
   "locationTimeout": "Sijainnin hakeminen kesti liian kauan. Yritä uudelleen tai hae aluettasi.",
@@ -347,5 +347,21 @@
     "missed": "Vastaamaton",
     "groupNotSupported": "Puhelut ovat käytettävissä vain kahdenkeskisissä keskusteluissa.",
     "noConnection": "Ei yhteyttä. Yritä uudelleen."
-  }
+  },
+  "shareLocationTitle": "Näytetäänkö sinut lähellä oleville?",
+  "shareLocationBody": "Kun kirjaudut sijaintiin, lähellä olevat voivat löytää profiilisi Tutki-näkymästä. He eivät näe, missä olet tai kuinka kaukana. Sijaintisi päivittyy vain, kun napautat Kirjaudu sijaintiin, ei koskaan automaattisesti. Voit käyttää sovellusta, vaikka vastaisit ei.",
+  "shareLocationAllow": "Salli",
+  "shareLocationDecline": "Älä salli",
+  "checkIn": "Kirjaudu sijaintiin",
+  "checkInHere": "Kirjaudu nykyiseen sijaintiin",
+  "checkInPickPlace": "Valitse paikka",
+  "checkInBarTitle": "Anna lähellä olevien löytää sinut",
+  "checkInBarSub": "Sijaintisi päivittyy vain, kun napautat Kirjaudu sijaintiin.",
+  "lastCheckIn": "Viimeksi kirjauduttu {time}",
+  "checkInFailed": "Sijaintiin kirjautuminen epäonnistui",
+  "shareLocationSetting": "Näytä minut lähellä oleville",
+  "shareLocationSettingSub": "Kun tämä on pois päältä, sijaintiasi ei lähetetä. Viimeisin kirjautuminen on voimassa, kunnes kirjaudut uudelleen.",
+  "notNow": "Ei nyt",
+  "checkInRowLabel": "Sijaintiin kirjautuminen",
+  "needsLocationDiscover": "Kirjaudu sijaintiin tai valitse alue otsikkoa napauttamalla nähdäksesi lähellä olevat."
 }

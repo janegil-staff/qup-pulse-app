@@ -462,16 +462,17 @@ export default function PersonalSettingsScreen({ navigation }) {
             last={false}
           />
 
-          {/* Where you appear to be. Browsing elsewhere is on the Discover header. */}
+          {/* Last check-in. Location is only sent on a manual check-in
+              (App Review 5.1.2(i)). Browsing elsewhere is on the Discover header. */}
           <Row
-            label={t.yourLocation || "Your location"}
+            label={t.checkInRowLabel || "Check-in"}
             value={
               profile?.locationMode === "manual"
                 ? profile?.locationName || t.setManually || "Set manually"
                 : t.usingGps || "Using GPS"
             }
             onPress={() =>
-              navigation.navigate("LocationPicker", { mode: "home" })
+              navigation.navigate("LocationPicker", { mode: "checkin" })
             }
             last
           />

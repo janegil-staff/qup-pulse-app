@@ -80,7 +80,7 @@
   "stepLocation": "Standort",
   "searchCityPlaceholder": "Stadt oder Gebiet suchen…",
   "enableLocation": "Meinen aktuellen Standort verwenden",
-  "locationPrivacy": "Suche nach dem Gebiet, in dem du erscheinen möchtest. Deine genaue Position wird nie gespeichert.",
+  "locationPrivacy": "Checke ein, damit Leute in der Nähe dich finden. Dein Standort wird nur beim Einchecken gesendet, und dein genauer Standort wird nie gespeichert.",
   "noPlacesFound": "Keine Orte gefunden.",
   "locationDenied": "Erlaube den Standortzugriff, um deine aktuelle Position zu verwenden.",
   "locationTimeout": "Die Standortbestimmung hat zu lange gedauert. Versuche es erneut oder suche nach deinem Gebiet.",
@@ -347,5 +347,21 @@
     "missed": "Verpasst",
     "groupNotSupported": "Anrufe sind nur in Einzelunterhaltungen verfügbar.",
     "noConnection": "Keine Verbindung. Bitte erneut versuchen."
-  }
+  },
+  "shareLocationTitle": "Dich Leuten in der Nähe zeigen?",
+  "shareLocationBody": "Wenn du eincheckst, können Leute in deiner Nähe dein Profil unter Entdecken finden. Sie sehen nicht, wo du bist oder wie weit entfernt. Dein Standort wird nur aktualisiert, wenn du auf Einchecken tippst, nie automatisch. Du kannst die App auch nutzen, wenn du ablehnst.",
+  "shareLocationAllow": "Erlauben",
+  "shareLocationDecline": "Nicht erlauben",
+  "checkIn": "Einchecken",
+  "checkInHere": "Hier einchecken",
+  "checkInPickPlace": "Ort wählen",
+  "checkInBarTitle": "Lass dich von Leuten in der Nähe finden",
+  "checkInBarSub": "Dein Standort wird nur aktualisiert, wenn du auf Einchecken tippst.",
+  "lastCheckIn": "Zuletzt eingecheckt {time}",
+  "checkInFailed": "Einchecken fehlgeschlagen",
+  "shareLocationSetting": "Mich Leuten in der Nähe zeigen",
+  "shareLocationSettingSub": "Wenn aus, wird dein Standort nie gesendet. Dein letzter Check-in bleibt, bis du erneut eincheckst.",
+  "notNow": "Nicht jetzt",
+  "checkInRowLabel": "Check-in",
+  "needsLocationDiscover": "Checke ein oder tippe auf den Titel, um ein Gebiet zu durchsuchen, und sieh Leute in der Nähe."
 }

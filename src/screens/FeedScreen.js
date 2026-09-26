@@ -1,7 +1,7 @@
 // localpulse/app/src/screens/FeedScreen.js
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, FlatList, Pressable, RefreshControl, StyleSheet, ActivityIndicator, Alert } from 'react-native';
-import * as Location from 'expo-location';
+import { coordsIfAlreadyPermitted } from '../lib/locationSharing.js';
 import { api } from '../api/client.js';
 import { useFeedStore } from '../store/feedStore.js';
 import PostCard from '../components/PostCard.js';
@@ -33,12 +33,10 @@ export default function FeedScreen({ navigation }) {
 
   useEffect(() => {
     (async () => {
+      // Ranking only — never prompts and never saved as the user's location.
       try {
-        const { status } = await Location.requestForegroundPermissionsAsync();
-        if (status === 'granted') {
-          const pos = await Location.getCurrentPositionAsync({});
-          setCoords({ lng: pos.coords.longitude, lat: pos.coords.latitude });
-        }
+        const coords = await coordsIfAlreadyPermitted();
+        if (coords) setCoords(coords);
       } catch {
         /* global feed fallback */
       } finally {

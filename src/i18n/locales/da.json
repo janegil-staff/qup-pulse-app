@@ -80,7 +80,7 @@
   "stepLocation": "Placering",
   "searchCityPlaceholder": "Søg efter en by eller et område…",
   "enableLocation": "Brug min nuværende placering",
-  "locationPrivacy": "Søg efter det område, du vil vises i. Din nøjagtige position gemmes aldrig.",
+  "locationPrivacy": "Tjek ind, så folk i nærheden kan finde dig. Din position sendes kun, når du tjekker ind, og din præcise position gemmes aldrig.",
   "noPlacesFound": "Ingen steder fundet.",
   "locationDenied": "Tillad adgang til placering for at bruge din nuværende position.",
   "locationTimeout": "Det tog for lang tid at hente placeringen. Prøv igen, eller søg efter dit område.",
@@ -347,5 +347,21 @@
     "missed": "Ubesvaret",
     "groupNotSupported": "Opkald er kun tilgængelige i én-til-én-samtaler.",
     "noConnection": "Ingen forbindelse. Prøv igen."
-  }
+  },
+  "shareLocationTitle": "Vis dig for folk i nærheden?",
+  "shareLocationBody": "Når du tjekker ind, kan folk i nærheden finde din profil i Opdag. De kan ikke se, hvor du er, eller hvor langt væk du er. Din position opdateres kun, når du trykker Tjek ind, aldrig automatisk. Du kan stadig bruge appen, hvis du siger nej.",
+  "shareLocationAllow": "Tillad",
+  "shareLocationDecline": "Tillad ikke",
+  "checkIn": "Tjek ind",
+  "checkInHere": "Tjek ind, hvor jeg er",
+  "checkInPickPlace": "Vælg et sted",
+  "checkInBarTitle": "Lad folk i nærheden finde dig",
+  "checkInBarSub": "Din position opdateres kun, når du trykker Tjek ind.",
+  "lastCheckIn": "Sidst tjekket ind {time}",
+  "checkInFailed": "Kunne ikke tjekke ind",
+  "shareLocationSetting": "Vis mig for folk i nærheden",
+  "shareLocationSettingSub": "Når det er slået fra, sendes din position aldrig. Din seneste indtjekning gælder, indtil du tjekker ind igen.",
+  "notNow": "Ikke nu",
+  "checkInRowLabel": "Indtjekning",
+  "needsLocationDiscover": "Tjek ind, eller tryk på titlen for at se et område, for at se folk i nærheden."
 }

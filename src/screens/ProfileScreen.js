@@ -327,20 +327,8 @@ export default function ProfileScreen({ route, navigation }) {
                 </View>
               ) : null}
             </View>
-            {profile.locationName ||
-            profile.neighborhood ||
-            profile.distanceKm != null ? (
-              <Text style={styles.heroMeta}>
-                {profile.locationName || profile.neighborhood || ""}
-                {(profile.locationName || profile.neighborhood) &&
-                profile.distanceKm != null
-                  ? "  ·  "
-                  : ""}
-                {profile.distanceKm != null
-                  ? `~${profile.distanceKm} km away`
-                  : ""}
-              </Text>
-            ) : null}
+            {/* Location / distance intentionally not shown to other users
+                (App Review 5.1.2(i)). */}
           </View>
         </View>
 

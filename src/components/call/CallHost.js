@@ -3,18 +3,48 @@
 // Renders the full-screen call UI as an overlay above the entire app whenever a
 // call is active. Mounted once, high in the tree (App.js), INSIDE CallProvider.
 //
-// Why an overlay and not a navigation route: the app has two separate navigator
-// trees (signup flow vs. the logged-in app) and swaps between them. A call must
-// be able to appear over any screen in either tree, and must not be affected by
-// navigation state changes mid-call. An absolutely-positioned overlay driven
-// purely by call phase sidesteps all of that.
-import React from "react";
-import { View, StyleSheet } from "react-native";
+// Overlay rather than a navigation route: the app has separate navigator trees
+// and swaps between them, and a call must survive navigation state changes.
+//
+// Also tells the user WHY a call ended when it wasn't their own doing — without
+// this the call screen just vanished on decline / busy / failure.
+import React, { useEffect, useRef } from "react";
+import { View, StyleSheet, Alert } from "react-native";
 import { useCall } from "../../context/CallContext";
+import { useLang } from "../../context/LangContext.js";
 import CallScreen from "../../screens/CallScreen.js";
 
+// End reasons that need no message: the user did it themselves, or the call
+// simply finished normally.
+const SILENT = new Set([null, undefined, "hangup", "cancelled", "ended", "declined_by_me"]);
+
+function messageFor(reason, t) {
+  const c = t.call || {};
+  switch (reason) {
+    case "declined":
+      return c.callDeclined || "Call declined";
+    case "timeout":
+      return t.callNoAnswer || "No answer";
+    case "busy":
+    case "already_in_call":
+      return t.callBusy || "They're on another call.";
+    default:
+      return c.callFailed || "Could not connect the call";
+  }
+}
+
 export default function CallHost() {
-  const { isInCall } = useCall();
+  const { isInCall, lastEndReason, error, endedAt } = useCall();
+  const { t } = useLang();
+  const shown = useRef(null);
+
+  useEffect(() => {
+    const reason = error || lastEndReason;
+    if (isInCall || !endedAt || SILENT.has(reason) || shown.current === endedAt) return;
+    shown.current = endedAt; // once per ended call
+    Alert.alert(messageFor(reason, t));
+  }, [isInCall, lastEndReason, error, endedAt, t]);
+
   if (!isInCall) return null;
   return (
     <View style={styles.overlay}>

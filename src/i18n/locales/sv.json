@@ -80,7 +80,7 @@
   "stepLocation": "Plats",
   "searchCityPlaceholder": "Sök efter en stad eller ett område…",
   "enableLocation": "Använd min nuvarande plats",
-  "locationPrivacy": "Sök efter området du vill visas i. Din exakta position lagras aldrig.",
+  "locationPrivacy": "Checka in så att personer i närheten kan hitta dig. Din position skickas bara när du checkar in, och din exakta position sparas aldrig.",
   "noPlacesFound": "Inga platser hittades.",
   "locationDenied": "Tillåt platsåtkomst för att använda din nuvarande position.",
   "locationTimeout": "Det tog för lång tid att hämta platsen. Försök igen, eller sök efter ditt område.",
@@ -347,5 +347,21 @@
     "missed": "Missat",
     "groupNotSupported": "Samtal är endast tillgängliga i konversationer mellan två personer.",
     "noConnection": "Ingen anslutning. Försök igen."
-  }
+  },
+  "shareLocationTitle": "Visa dig för personer i närheten?",
+  "shareLocationBody": "När du checkar in kan personer i närheten hitta din profil i Upptäck. De ser inte var du är eller hur långt bort du är. Din position uppdateras bara när du trycker Checka in, aldrig automatiskt. Du kan fortfarande använda appen om du säger nej.",
+  "shareLocationAllow": "Tillåt",
+  "shareLocationDecline": "Tillåt inte",
+  "checkIn": "Checka in",
+  "checkInHere": "Checka in där jag är",
+  "checkInPickPlace": "Välj en plats",
+  "checkInBarTitle": "Låt personer i närheten hitta dig",
+  "checkInBarSub": "Din position uppdateras bara när du trycker Checka in.",
+  "lastCheckIn": "Senast incheckad {time}",
+  "checkInFailed": "Kunde inte checka in",
+  "shareLocationSetting": "Visa mig för personer i närheten",
+  "shareLocationSettingSub": "När det är av skickas din position aldrig. Din senaste incheckning gäller tills du checkar in igen.",
+  "notNow": "Inte nu",
+  "checkInRowLabel": "Incheckning",
+  "needsLocationDiscover": "Checka in, eller tryck på rubriken för att bläddra i ett område, för att se personer i närheten."
 }

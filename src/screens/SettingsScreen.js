@@ -2,10 +2,11 @@
 //
 // NOTE: `t` from useLang() is a plain object of strings, not a function.
 // Access keys as t.someKey — never t('someKey').
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, Alert, ScrollView, StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { api } from '../api/client.js';
+import { getLocationConsent, setLocationConsent } from '../lib/locationSharing.js';
 import { useAuth } from '../context/AuthContext.js';
 import { useLang } from '../context/LangContext.js';
 import { useThemeMode } from '../theme/ThemeContext.js';
@@ -34,6 +35,21 @@ export default function SettingsScreen({ navigation }) {
   const { pref, setPref } = useThemeMode();
 
   const isDark = pref === 'dark' || (pref === 'system' && theme.mode === 'dark');
+
+  // Consent to be shown to people nearby (App Review 5.1.2(i)). Off = check-in
+  // is disabled until the user says yes again. On does NOT check in — that is
+  // always a separate tap on Discover.
+  const [sharing, setSharing] = useState(false);
+  useEffect(() => { getLocationConsent().then(setSharing); }, []);
+  async function toggleSharing(v) {
+    setSharing(v);
+    try {
+      await setLocationConsent(v);
+    } catch (e) {
+      setSharing(!v);
+      Alert.alert(t.error, e.message);
+    }
+  }
 
   function confirmLogout() {
     Alert.alert(t.logoutConfirmTitle, t.logoutConfirmBody, [
@@ -109,6 +125,13 @@ export default function SettingsScreen({ navigation }) {
 
         {/* Privacy & safety */}
         <Section title={t.privacySection}>
+          <ToggleRow
+            label={t.shareLocationSetting}
+            sublabel={t.shareLocationSettingSub}
+            value={sharing}
+            onValueChange={toggleSharing}
+            last={false}
+          />
           <Row label={t.blockedUsersTitle} onPress={() => navigation.navigate('BlockedUsers')} last />
         </Section>
 

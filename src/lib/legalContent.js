@@ -101,7 +101,7 @@ export const LEGAL = {
       ],
       [
         "3. Location",
-        "We use your approximate location to show and rank nearby profiles. Coordinates are rounded before they are stored, so we hold an approximate position rather than an exact one. You can disable location in your device settings, though discovery depends on it.",
+        "Your location is sent to us only when you tap Check in or choose a place yourself — never automatically or in the background. Before your first check-in we ask whether you want to be shown to people nearby, and you can decline and keep using the app. We use your last check-in to show your profile to people nearby and to order profiles by distance. Other users are not shown your position or your distance. Coordinates are rounded before they are stored, so we hold an approximate position rather than an exact one. You can turn off check-ins under Settings → Show me to people nearby; your last check-in stays stored until you check in again or delete your account. We may also read your device location, without storing it, to rank posts in your feed. You can block any user from their profile; blocked users cannot see you or message you.",
       ],
       [
         "4. Sharing",

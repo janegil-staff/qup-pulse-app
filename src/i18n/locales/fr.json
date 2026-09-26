@@ -80,7 +80,7 @@
   "stepLocation": "Localisation",
   "searchCityPlaceholder": "Rechercher une ville ou une zone…",
   "enableLocation": "Utiliser ma position actuelle",
-  "locationPrivacy": "Recherchez la zone dans laquelle vous souhaitez apparaître. Votre position exacte n'est jamais enregistrée.",
+  "locationPrivacy": "Enregistrez-vous pour que les personnes proches vous trouvent. Votre position n'est envoyée que lors d'un enregistrement, et votre position exacte n'est jamais stockée.",
   "noPlacesFound": "Aucun lieu trouvé.",
   "locationDenied": "Autorisez l'accès à la localisation pour utiliser votre position actuelle.",
   "locationTimeout": "La localisation a pris trop de temps. Réessayez, ou recherchez votre zone.",
@@ -347,5 +347,21 @@
     "missed": "Manqué",
     "groupNotSupported": "Les appels sont disponibles uniquement dans les conversations en tête-à-tête.",
     "noConnection": "Aucune connexion. Veuillez réessayer."
-  }
+  },
+  "shareLocationTitle": "Vous montrer aux personnes à proximité ?",
+  "shareLocationBody": "Lorsque vous vous enregistrez, les personnes proches peuvent trouver votre profil dans Découvrir. Elles ne voient ni où vous êtes ni à quelle distance. Votre position n'est mise à jour que lorsque vous touchez S'enregistrer, jamais automatiquement. Vous pouvez utiliser l'app même si vous refusez.",
+  "shareLocationAllow": "Autoriser",
+  "shareLocationDecline": "Ne pas autoriser",
+  "checkIn": "S'enregistrer",
+  "checkInHere": "M'enregistrer ici",
+  "checkInPickPlace": "Choisir un lieu",
+  "checkInBarTitle": "Laissez les personnes proches vous trouver",
+  "checkInBarSub": "Votre position n'est mise à jour que lorsque vous touchez S'enregistrer.",
+  "lastCheckIn": "Dernier enregistrement {time}",
+  "checkInFailed": "Impossible de s'enregistrer",
+  "shareLocationSetting": "Me montrer aux personnes à proximité",
+  "shareLocationSettingSub": "Désactivé, votre position n'est jamais envoyée. Votre dernier enregistrement reste jusqu'au suivant.",
+  "notNow": "Pas maintenant",
+  "checkInRowLabel": "Enregistrement",
+  "needsLocationDiscover": "Enregistrez-vous, ou touchez le titre pour parcourir une zone, pour voir les personnes à proximité."
 }

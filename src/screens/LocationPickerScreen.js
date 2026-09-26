@@ -2,8 +2,12 @@
 //
 // Search and pick a place. Used for two things, chosen via route params:
 //
-//   navigation.navigate('LocationPicker', { mode: 'home' })    → sets my location
+//   navigation.navigate('LocationPicker', { mode: 'checkin' }) → check in
+//                                                (legacy 'home' is an alias)
 //   navigation.navigate('LocationPicker', { mode: 'browse' })  → sets where I browse
+//
+// Check-in asks for consent first (declinable); see lib/locationSharing.js.
+// Browsing never sends the user's own location.
 //
 // Both modes save on tap and pop the screen. Onboarding needs to stage a pick
 // and commit it on Continue instead, so it has its own inline step rather than
@@ -12,15 +16,17 @@ import React, { useState } from 'react';
 import {
   View, Text, TextInput, FlatList, Pressable, StyleSheet, ActivityIndicator, Alert,
 } from 'react-native';
-import * as Location from 'expo-location';
 import { api } from '../api/client.js';
+import { useLang } from '../context/LangContext.js';
+import { checkInAt, checkInHere } from '../lib/locationSharing.js';
 import { usePlaceSearch } from '../hooks/usePlaceSearch.js';
 import { theme, useStyles } from '../theme/theme.js';
 import ScreenHeader from '../components/ScreenHeader.js';
 
 export default function LocationPickerScreen({ route, navigation }) {
   const styles = useStyles(stylesFactory);
-  const mode = route?.params?.mode === 'browse' ? 'browse' : 'home';
+  const mode = route?.params?.mode === 'browse' ? 'browse' : 'checkin';
+  const { t } = useLang();
 
   const [query, setQuery] = useState('');
   const [saving, setSaving] = useState(false);
@@ -32,11 +38,12 @@ export default function LocationPickerScreen({ route, navigation }) {
       if (mode === 'browse') {
         await api.setBrowseLocation({ lat: place.lat, lng: place.lng, name: place.name });
       } else {
-        await api.setLocation({ lat: place.lat, lng: place.lng, name: place.name, mode: 'manual' });
+        const res = await checkInAt(t, place);
+        if (res === null) return; // declined — stay on the picker
       }
       navigation.goBack();
     } catch (e) {
-      Alert.alert('Could not save location', e?.message ?? 'Try again.');
+      Alert.alert(t.checkInFailed || 'Could not save location', e?.message ?? 'Try again.');
     } finally {
       setSaving(false);
     }
@@ -45,17 +52,11 @@ export default function LocationPickerScreen({ route, navigation }) {
   async function useCurrentLocation() {
     setSaving(true);
     try {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permission needed', 'Allow location access to use your current position.');
-        return;
-      }
-      const pos = await Location.getCurrentPositionAsync({});
-      const { latitude, longitude } = pos.coords;
       if (mode === 'browse') {
         await api.setBrowseLocation({ clear: true });
       } else {
-        await api.setLocation({ lat: latitude, lng: longitude, mode: 'gps' });
+        const res = await checkInHere(t);
+        if (res === null) return;
       }
       navigation.goBack();
     } catch (e) {
@@ -65,8 +66,8 @@ export default function LocationPickerScreen({ route, navigation }) {
     }
   }
 
-  const title = mode === 'browse' ? 'Browse another area' : 'Set your location';
-  const resetLabel = mode === 'browse' ? 'Browse near me again' : 'Use my current location';
+  const title = mode === 'browse' ? 'Browse another area' : t.checkIn;
+  const resetLabel = mode === 'browse' ? 'Browse near me again' : t.checkInHere;
 
   return (
     <View style={styles.root}>
@@ -114,7 +115,7 @@ export default function LocationPickerScreen({ route, navigation }) {
               <Text style={styles.empty}>
                 {mode === 'browse'
                   ? 'Search for an area to browse people there.'
-                  : 'Search for the area you want to appear in. Your exact position is never stored.'}
+                  : t.locationPrivacy}
               </Text>
             )
           }

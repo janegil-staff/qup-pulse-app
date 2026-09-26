@@ -80,7 +80,7 @@
   "stepLocation": "Locatie",
   "searchCityPlaceholder": "Zoek een stad of gebied…",
   "enableLocation": "Gebruik mijn huidige locatie",
-  "locationPrivacy": "Zoek het gebied waarin je wilt verschijnen. Je exacte positie wordt nooit opgeslagen.",
+  "locationPrivacy": "Check in zodat mensen in de buurt je kunnen vinden. Je locatie wordt alleen verzonden als je incheckt, en je exacte positie wordt nooit opgeslagen.",
   "noPlacesFound": "Geen plaatsen gevonden.",
   "locationDenied": "Sta locatietoegang toe om je huidige positie te gebruiken.",
   "locationTimeout": "Het ophalen van je locatie duurde te lang. Probeer het opnieuw, of zoek je gebied op.",
@@ -347,5 +347,21 @@
     "missed": "Gemist",
     "groupNotSupported": "Bellen is alleen beschikbaar in één-op-één-gesprekken.",
     "noConnection": "Geen verbinding. Probeer het opnieuw."
-  }
+  },
+  "shareLocationTitle": "Jezelf tonen aan mensen in de buurt?",
+  "shareLocationBody": "Als je incheckt, kunnen mensen in de buurt je profiel vinden in Ontdekken. Ze zien niet waar je bent of hoe ver weg. Je locatie wordt alleen bijgewerkt als je op Inchecken tikt, nooit automatisch. Je kunt de app ook gebruiken als je nee zegt.",
+  "shareLocationAllow": "Toestaan",
+  "shareLocationDecline": "Niet toestaan",
+  "checkIn": "Inchecken",
+  "checkInHere": "Inchecken waar ik ben",
+  "checkInPickPlace": "Kies een plek",
+  "checkInBarTitle": "Laat mensen in de buurt je vinden",
+  "checkInBarSub": "Je locatie wordt alleen bijgewerkt als je op Inchecken tikt.",
+  "lastCheckIn": "Laatst ingecheckt {time}",
+  "checkInFailed": "Inchecken mislukt",
+  "shareLocationSetting": "Toon mij aan mensen in de buurt",
+  "shareLocationSettingSub": "Als dit uit staat, wordt je locatie nooit verzonden. Je laatste check-in blijft tot je opnieuw incheckt.",
+  "notNow": "Niet nu",
+  "checkInRowLabel": "Check-in",
+  "needsLocationDiscover": "Check in, of tik op de titel om een gebied te bekijken, om mensen in de buurt te zien."
 }

@@ -13,7 +13,6 @@ import {
   RefreshControl,
   useWindowDimensions,
 } from "react-native";
-import * as Location from "expo-location";
 import { api } from "../api/client.js";
 import { theme, useStyles } from "../theme/theme.js";
 import ScreenHeader from "../components/ScreenHeader.js";
@@ -21,6 +20,8 @@ import { avatarSource } from "../lib/avatar.js";
 import VerifiedBadge from "../components/VerifiedBadge.js";
 import { useLang } from "../context/LangContext.js";
 import ProfilePrompt from "../components/ProfilePrompt.js";
+import CheckInBar from "../components/CheckInBar.js";
+import { getLocationConsent, getLastCheckIn } from "../lib/locationSharing.js";
 const GAP = 8;
 const COLS = 3;
 
@@ -44,17 +45,8 @@ export default function DiscoveryScreen({ navigation }) {
   const load = useCallback(async () => {
     setError("");
     try {
-      // Push a fresh location so results are geo-accurate, then fetch.
-      try {
-        const { status } = await Location.requestForegroundPermissionsAsync();
-        if (status === "granted") {
-          const pos = await Location.getCurrentPositionAsync({});
-          await api.updateLocation(pos.coords.longitude, pos.coords.latitude);
-        }
-      } catch {
-        /* proceed without fresh location */
-      }
-
+      // App Review 5.1.2(i): loading this screen must never send the viewer's
+      // location. That happens only through an explicit Check in (CheckInBar).
       const data = await api.getDiscovery();
       // Accept a few possible shapes: { users }, { people }, { deck }, or a bare array.
       const list =
@@ -73,12 +65,22 @@ export default function DiscoveryScreen({ navigation }) {
       setBrowsingFrom(data.browsingFrom ?? null);
       setBrowsingElsewhere(Boolean(data.browsingElsewhere));
     } catch (e) {
-      setError(e?.message ?? "Could not load people nearby");
+      // A user who skipped or declined location has none on the server, and
+      // Discovery errors without one. Explain how to fix it instead.
+      const [consent, last] = await Promise.all([
+        getLocationConsent(),
+        getLastCheckIn(),
+      ]);
+      setError(
+        !consent || !last
+          ? t.needsLocationDiscover
+          : (e?.message ?? "Could not load people nearby"),
+      );
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     load();
@@ -127,11 +129,8 @@ export default function DiscoveryScreen({ navigation }) {
             {name}
             {item.age ? `, ${item.age}` : ""}
           </Text>
-          {item.distanceKm != null ? (
-            <Text style={styles.meta} numberOfLines={1}>
-              ~{item.distanceKm} km
-            </Text>
-          ) : null}
+          {/* No distance shown — other users' locations are not displayed
+              (App Review 5.1.2(i)). The list is still proximity-ordered. */}
         </View>
         {item.online ? <View style={styles.onlineDot} /> : null}
       </Pressable>
@@ -149,6 +148,12 @@ export default function DiscoveryScreen({ navigation }) {
         }
       />
       <ProfilePrompt />
+      <CheckInBar
+        onChanged={load}
+        onPickPlace={() =>
+          navigation.navigate("LocationPicker", { mode: "checkin" })
+        }
+      />
       {browsingElsewhere ? (
         <Pressable style={styles.banner} onPress={browseNearMeAgain}>
           <Text style={styles.bannerText}>Browse near me again</Text>

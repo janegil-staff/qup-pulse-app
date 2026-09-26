@@ -2,7 +2,7 @@
   "expo": {
     "name": "Qup Pulse",
     "slug": "qup-pulse",
-    "version": "2.5",
+    "version": "2.8",
     "orientation": "default",
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "automatic",
@@ -17,7 +17,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.qup.pulse",
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and Discovery shows profiles in your area first. Your position is rounded before it is stored, and you can pick a place manually instead.",
+        "NSLocationWhenInUseUsageDescription": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and when you tap Check in, people nearby can find your profile. Your position is rounded before it is stored, and you can pick a place manually instead.",
         "NSPhotoLibraryUsageDescription": "Qup Pulse needs access to your photo library so you can choose pictures to share. For example, you can pick a photo from your library to set as your profile picture, attach to a post, or send in a chat. Only the photos you select are uploaded.",
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -38,7 +38,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and Discovery shows profiles in your area first. Your position is rounded before it is stored, and you can pick a place manually instead.",
+          "locationWhenInUsePermission": "Qup Pulse uses your location to show you people and posts nearby. For example, your feed ranks posts by how close to you they were made, and when you tap Check in, people nearby can find your profile. Your position is rounded before it is stored, and you can pick a place manually instead.",
           "isIosBackgroundLocationEnabled": false,
           "isAndroidBackgroundLocationEnabled": false
         }

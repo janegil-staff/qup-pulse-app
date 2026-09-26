@@ -141,7 +141,9 @@ export const api = {
   getMyProfile: () => request('/me'),
   updateMyProfile: (b) => request('/me', { method: 'PATCH', body: b }),
   updatePreferences: (b) => request('/me/preferences', { method: 'PATCH', body: b }),
-  updateLocation: (lng, lat) => request('/me/location', { method: 'PATCH', body: { lng, lat } }),
+  // updateLocation (PATCH /me/location) removed: Discover called it on every
+  // load, which App Review treated as an automatic check-in (5.1.2(i)). The
+  // only way to send a location now is setLocation(), via lib/locationSharing.
   deleteAccount: () => request('/me', { method: 'DELETE' }),
 
   // ── Dating: discovery + matching ──
