@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Kun tämä on pois päältä, sijaintiasi ei lähetetä. Viimeisin kirjautuminen on voimassa, kunnes kirjaudut uudelleen.",
   "notNow": "Ei nyt",
   "checkInRowLabel": "Sijaintiin kirjautuminen",
-  "needsLocationDiscover": "Kirjaudu sijaintiin tai valitse alue otsikkoa napauttamalla nähdäksesi lähellä olevat.",
-  "callReport": "Ilmoita",
-  "callReportTitle": "Ilmoita tästä puhelusta",
-  "callReportPrompt": "Mitä tapahtui? Puhelu päättyy ilmoituksen jälkeen.",
-  "callReportedTitle": "Kiitos ilmoituksesta",
-  "callReportedBody": "Moderaattorimme käyvät sen läpi. Haluatko myös estää käyttäjän {name}? Hän ei voi silloin soittaa tai lähettää sinulle viestejä.",
-  "callReportedNotNow": "Ei nyt",
-  "callReportedBlock": "Estä"
+  "needsLocationDiscover": "Kirjaudu sijaintiin tai valitse alue otsikkoa napauttamalla nähdäksesi lähellä olevat."
 }

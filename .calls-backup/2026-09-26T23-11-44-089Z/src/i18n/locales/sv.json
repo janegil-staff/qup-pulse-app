@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "När det är av skickas din position aldrig. Din senaste incheckning gäller tills du checkar in igen.",
   "notNow": "Inte nu",
   "checkInRowLabel": "Incheckning",
-  "needsLocationDiscover": "Checka in, eller tryck på rubriken för att bläddra i ett område, för att se personer i närheten.",
-  "callReport": "Anmäl",
-  "callReportTitle": "Anmäl det här samtalet",
-  "callReportPrompt": "Vad hände? Samtalet avslutas när du anmäler.",
-  "callReportedTitle": "Tack för din anmälan",
-  "callReportedBody": "Våra moderatorer granskar den. Vill du också blockera {name}? Då kan de inte ringa eller skriva till dig.",
-  "callReportedNotNow": "Inte nu",
-  "callReportedBlock": "Blockera"
+  "needsLocationDiscover": "Checka in, eller tryck på rubriken för att bläddra i ett område, för att se personer i närheten."
 }

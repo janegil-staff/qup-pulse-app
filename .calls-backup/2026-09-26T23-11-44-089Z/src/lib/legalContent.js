@@ -72,7 +72,7 @@ export const LEGAL = {
       ],
       [
         "6. Reporting and moderation",
-        "You can report any message, post or profile from inside the app, report the other person during a video call, and block any user. Reports go to our moderation team and we aim to review them promptly. To judge a report fairly we may read the reported content and the conversation around it. We may remove a message, post or comment that breaks these terms, and we may suspend or close an account — removing content on its own does not stop someone repeating it, so serious or repeated breaches are dealt with at the account level. If we act on your content or your account and you believe we got it wrong, contact us and we will look at it again.",
+        "You can report any message, post or profile from inside the app, and you can block any user. Reports go to our moderation team and we aim to review them promptly. To judge a report fairly we may read the reported content and the conversation around it. We may remove a message, post or comment that breaks these terms, and we may suspend or close an account — removing content on its own does not stop someone repeating it, so serious or repeated breaches are dealt with at the account level. If we act on your content or your account and you believe we got it wrong, contact us and we will look at it again.",
       ],
       [
         "7. Deleting your messages",
@@ -112,27 +112,23 @@ export const LEGAL = {
         "Private messages are stored so they can be delivered and read. Three different things can happen to a message and they are not the same. Hiding removes it from your own view only: the other person keeps their copy, is not told, and the message itself is unchanged. Retracting withdraws your own message so it disappears for both of you; this cannot be undone, and the text is not erased from our servers because we keep it so reports about it can still be handled. Removal by our moderators takes a message down for both participants, and we can reverse it.",
       ],
       [
-        "6. Video calls",
-        "You can start a video call in a one-to-one conversation. Your camera and microphone are used only during a call you have started or answered, and only after you allow access. Audio and video travel directly between the two devices — or through a relay server when a direct connection isn't possible — and are encrypted in transit. We never record or store what is said or shown in a call. We do keep a call record: who called whom, when, how long it lasted and whether it connected, so your call history works and reports can be handled. You can report the other person during a call; the report goes to our moderation team with a reference to that call. Blocked users cannot call you.",
-      ],
-      [
-        "7. Moderation and staff access",
+        "6. Moderation and staff access",
         "To keep the service safe we operate a moderation team. Staff accounts are either moderators, who act on content, or administrators, who can additionally manage accounts. When someone files a report, moderators can read the reported message and the conversation around it — a single line is rarely enough to judge a complaint fairly. A report also stores a copy of the message text as it was when the report was made, and that copy is kept even if the message is later retracted or removed. Moderators can additionally see messages participants have hidden, messages senders have retracted, and messages our team has removed; these lists are not limited to content someone has reported. Administrators can see account details including email addresses and can suspend accounts. Staff access to private messages is a real intrusion and we treat it as one: these tools exist so complaints can be answered and abuse acted on, not for browsing.",
       ],
       [
-        "8. Retention and deletion",
+        "7. Retention and deletion",
         "We keep your data while your account is active. Deleting your account from Settings removes your profile and your matches. Messages you have hidden or retracted, messages our moderators have removed, and the copies stored with reports are kept rather than erased, so that reports and appeals about them remain answerable. If you want your messages removed along with your account, contact us and we will do so, except where we must keep something to deal with an open report or to meet a legal obligation.",
       ],
       [
-        "9. Security",
+        "8. Security",
         "We use industry-standard measures to protect your data, though no system is perfectly secure.",
       ],
       [
-        "10. Your rights",
+        "9. Your rights",
         "You can access, correct, or delete your information at any time from within the app, or by contacting us. If you are in the EU or EEA you also have the right to object to processing, to request a copy of your data, and to complain to your national data protection authority.",
       ],
       [
-        "11. Contact",
+        "10. Contact",
         "For privacy questions, contact the support address listed on our website.",
       ],
     ],

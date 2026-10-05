@@ -379,12 +379,5 @@
   "shareLocationSettingSub": "Når dette er av, sendes posisjonen din aldri. Siste innsjekking gjelder til du sjekker inn igjen.",
   "notNow": "Ikke nå",
   "checkInRowLabel": "Innsjekking",
-  "needsLocationDiscover": "Sjekk inn, eller trykk på tittelen for å se et område, for å se folk i nærheten.",
-  "callReport": "Rapporter",
-  "callReportTitle": "Rapporter denne samtalen",
-  "callReportPrompt": "Hva skjedde? Samtalen avsluttes når du rapporterer.",
-  "callReportedTitle": "Takk for at du rapporterte",
-  "callReportedBody": "Moderatorene våre går gjennom det. Vil du også blokkere {name}? Da kan de ikke ringe eller sende meldinger til deg.",
-  "callReportedNotNow": "Ikke nå",
-  "callReportedBlock": "Blokker"
+  "needsLocationDiscover": "Sjekk inn, eller trykk på tittelen for å se et område, for å se folk i nærheten."
 }

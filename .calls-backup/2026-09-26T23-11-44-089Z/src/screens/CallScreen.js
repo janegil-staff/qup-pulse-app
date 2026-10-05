@@ -10,9 +10,7 @@
 //   - text glyphs (the app has no @expo/vector-icons)
 
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, StyleSheet, StatusBar, Platform, Alert } from "react-native";
-import ReportSheet from "../components/ReportSheet.js";
-import { api } from "../api/client.js";
+import { View, Text, Pressable, StyleSheet, StatusBar, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useCall, CALL_PHASE } from "../context/CallContext";
 import { useLang } from "../context/LangContext.js";
@@ -46,7 +44,6 @@ export default function CallScreen() {
     phase,
     media,
     peer,
-    callId,
     localStream,
     remoteStream,
     micEnabled,
@@ -63,39 +60,6 @@ export default function CallScreen() {
   } = useCall();
 
   const [elapsed, setElapsed] = useState(0);
-  const [reportOpen, setReportOpen] = useState(false);
-  const peerId = peer?.id ?? peer?._id ?? null;
-
-  // Report during a call (App Review 1.2). Filed as a USER report so it lands
-  // in the existing moderation queue, tagged with the call id; the call record
-  // is flagged too. Then the call ends and the user is offered a block.
-  async function submitReport(reason, note) {
-    if (!peerId) return;
-    const tag = `[Video call${callId ? ` ${callId}` : ""}]`;
-    const details = `${tag} ${note || ""}`.trim().slice(0, 500);
-    try {
-      await api.reportUser(peerId, reason, details);
-    } catch (e) {
-      Alert.alert(t.reportFailed || "Could not send the report", e?.message ?? "");
-      throw e;
-    }
-    if (callId) api.reportCall(callId, reason, note).catch(() => {});
-    setReportOpen(false);
-    const name = peer?.displayName || peer?.username || "";
-    endCall();
-    Alert.alert(
-      t.callReportedTitle || "Thanks for reporting",
-      (t.callReportedBody || "Our moderators will review it. Do you also want to block {name}? They won't be able to call or message you.").replace("{name}", name),
-      [
-        { text: t.callReportedNotNow || "Not now", style: "cancel" },
-        {
-          text: t.callReportedBlock || "Block",
-          style: "destructive",
-          onPress: () => api.blockUser(peerId).catch(() => {}),
-        },
-      ],
-    );
-  }
 
   useEffect(() => {
     if (phase !== CALL_PHASE.ACTIVE || !startedAt) return undefined;
@@ -151,18 +115,6 @@ export default function CallScreen() {
       )}
 
       <SafeAreaView style={styles.overlay} edges={["top", "bottom"]}>
-        {peerId && phase !== CALL_PHASE.INCOMING ? (
-          <Pressable
-            style={styles.reportPill}
-            onPress={() => setReportOpen(true)}
-            accessibilityRole="button"
-            accessibilityLabel={t.callReport || "Report"}
-            hitSlop={8}
-          >
-            <Text style={styles.reportPillText}>🚩 {t.callReport || "Report"}</Text>
-          </Pressable>
-        ) : null}
-
         <View style={styles.header}>
           <Text style={styles.peerName} numberOfLines={1}>
             {peerName}
@@ -249,14 +201,6 @@ export default function CallScreen() {
           )}
         </View>
       </SafeAreaView>
-
-      <ReportSheet
-        visible={reportOpen}
-        onClose={() => setReportOpen(false)}
-        onSubmit={submitReport}
-        title={t.callReportTitle || "Report this call"}
-        prompt={t.callReportPrompt || "What happened? The call will end after you report."}
-      />
     </View>
   );
 }
@@ -323,25 +267,6 @@ const callStylesFactory = ({ colors }) =>
     overlay: {
       flex: 1,
       justifyContent: "space-between",
-    },
-    // In the normal flow (not absolute) so it always sits below the notch /
-    // Dynamic Island — SafeAreaView's padding already accounts for it.
-    reportPill: {
-      alignSelf: "flex-start",
-      marginLeft: 16,
-      marginTop: 8,
-      zIndex: 2,
-      flexDirection: "row",
-      alignItems: "center",
-      backgroundColor: "rgba(0,0,0,0.45)",
-      borderRadius: 16,
-      paddingHorizontal: 12,
-      paddingVertical: 6,
-    },
-    reportPillText: {
-      color: "#FFFFFF",
-      fontSize: 13,
-      fontWeight: "600",
     },
     header: {
       alignItems: "center",

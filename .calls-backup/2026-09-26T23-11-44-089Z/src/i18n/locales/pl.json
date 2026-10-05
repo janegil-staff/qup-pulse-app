@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Gdy wyłączone, twoja lokalizacja nigdy nie jest wysyłana. Ostatnie zameldowanie obowiązuje do następnego.",
   "notNow": "Nie teraz",
   "checkInRowLabel": "Zameldowanie",
-  "needsLocationDiscover": "Zamelduj się lub stuknij tytuł, aby przeglądać obszar i zobaczyć osoby w pobliżu.",
-  "callReport": "Zgłoś",
-  "callReportTitle": "Zgłoś tę rozmowę",
-  "callReportPrompt": "Co się stało? Rozmowa zakończy się po zgłoszeniu.",
-  "callReportedTitle": "Dziękujemy za zgłoszenie",
-  "callReportedBody": "Nasi moderatorzy je sprawdzą. Czy chcesz też zablokować użytkownika {name}? Nie będzie mógł do ciebie dzwonić ani pisać.",
-  "callReportedNotNow": "Nie teraz",
-  "callReportedBlock": "Zablokuj"
+  "needsLocationDiscover": "Zamelduj się lub stuknij tytuł, aby przeglądać obszar i zobaczyć osoby w pobliżu."
 }

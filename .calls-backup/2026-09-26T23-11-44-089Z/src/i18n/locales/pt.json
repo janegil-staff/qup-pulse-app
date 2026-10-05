@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Desativado, sua localização nunca é enviada. Seu último check-in vale até você fazer outro.",
   "notNow": "Agora não",
   "checkInRowLabel": "Check-in",
-  "needsLocationDiscover": "Faça check-in, ou toque no título para explorar uma área, para ver pessoas próximas.",
-  "callReport": "Denunciar",
-  "callReportTitle": "Denunciar esta chamada",
-  "callReportPrompt": "O que aconteceu? A chamada será encerrada após a denúncia.",
-  "callReportedTitle": "Obrigado pela denúncia",
-  "callReportedBody": "Nossos moderadores vão analisá-la. Quer bloquear {name} também? A pessoa não poderá ligar nem enviar mensagens para você.",
-  "callReportedNotNow": "Agora não",
-  "callReportedBlock": "Bloquear"
+  "needsLocationDiscover": "Faça check-in, ou toque no título para explorar uma área, para ver pessoas próximas."
 }

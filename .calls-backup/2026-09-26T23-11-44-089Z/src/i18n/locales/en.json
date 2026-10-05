@@ -379,12 +379,5 @@
   "shareLocationSettingSub": "When off, your location is never sent. Your last check-in stays until you check in again.",
   "notNow": "Not now",
   "checkInRowLabel": "Check-in",
-  "needsLocationDiscover": "Check in, or tap the title to browse an area, to see people nearby.",
-  "callReport": "Report",
-  "callReportTitle": "Report this call",
-  "callReportPrompt": "What happened? The call will end after you report.",
-  "callReportedTitle": "Thanks for reporting",
-  "callReportedBody": "Our moderators will review it. Do you also want to block {name}? They won't be able to call or message you.",
-  "callReportedNotNow": "Not now",
-  "callReportedBlock": "Block"
+  "needsLocationDiscover": "Check in, or tap the title to browse an area, to see people nearby."
 }

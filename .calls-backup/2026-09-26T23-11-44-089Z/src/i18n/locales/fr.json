@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Désactivé, votre position n'est jamais envoyée. Votre dernier enregistrement reste jusqu'au suivant.",
   "notNow": "Pas maintenant",
   "checkInRowLabel": "Enregistrement",
-  "needsLocationDiscover": "Enregistrez-vous, ou touchez le titre pour parcourir une zone, pour voir les personnes à proximité.",
-  "callReport": "Signaler",
-  "callReportTitle": "Signaler cet appel",
-  "callReportPrompt": "Que s'est-il passé ? L'appel se terminera après le signalement.",
-  "callReportedTitle": "Merci pour votre signalement",
-  "callReportedBody": "Nos modérateurs vont l'examiner. Voulez-vous aussi bloquer {name} ? Cette personne ne pourra plus vous appeler ni vous écrire.",
-  "callReportedNotNow": "Pas maintenant",
-  "callReportedBlock": "Bloquer"
+  "needsLocationDiscover": "Enregistrez-vous, ou touchez le titre pour parcourir une zone, pour voir les personnes à proximité."
 }

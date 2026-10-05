@@ -191,11 +191,6 @@ export const api = {
   // different NATs (typical on mobile data) will often fail — STUN alone is not
   // enough. Returns the parsed body (request() already unwraps res.json()).
   getIceServers: () => request('/calls/ice-servers'),
-  // Flags the call record (Call.reported). The report moderators actually see
-  // is filed with reportUser — the server's call report doesn't reach the
-  // admin queue yet (TODO in callController.reportCall).
-  reportCall: (callId, reason, details) =>
-    request(`/calls/${callId}/report`, { method: 'POST', body: { reason, details } }),
 
   requestPinReset: (email) => request('/auth/forgot-pin', { method: 'POST', body: { email }, auth: false }),
   resetPin: (email, code, pin) => request('/auth/reset-pin', { method: 'POST', body: { email, code, pin }, auth: false }),

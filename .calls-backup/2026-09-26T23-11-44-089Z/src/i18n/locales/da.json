@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Når det er slået fra, sendes din position aldrig. Din seneste indtjekning gælder, indtil du tjekker ind igen.",
   "notNow": "Ikke nu",
   "checkInRowLabel": "Indtjekning",
-  "needsLocationDiscover": "Tjek ind, eller tryk på titlen for at se et område, for at se folk i nærheden.",
-  "callReport": "Anmeld",
-  "callReportTitle": "Anmeld dette opkald",
-  "callReportPrompt": "Hvad skete der? Opkaldet afsluttes, når du anmelder.",
-  "callReportedTitle": "Tak for din anmeldelse",
-  "callReportedBody": "Vores moderatorer gennemgår det. Vil du også blokere {name}? Så kan de ikke ringe eller skrive til dig.",
-  "callReportedNotNow": "Ikke nu",
-  "callReportedBlock": "Bloker"
+  "needsLocationDiscover": "Tjek ind, eller tryk på titlen for at se et område, for at se folk i nærheden."
 }

@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Wenn aus, wird dein Standort nie gesendet. Dein letzter Check-in bleibt, bis du erneut eincheckst.",
   "notNow": "Nicht jetzt",
   "checkInRowLabel": "Check-in",
-  "needsLocationDiscover": "Checke ein oder tippe auf den Titel, um ein Gebiet zu durchsuchen, und sieh Leute in der Nähe.",
-  "callReport": "Melden",
-  "callReportTitle": "Diesen Anruf melden",
-  "callReportPrompt": "Was ist passiert? Der Anruf endet, wenn du meldest.",
-  "callReportedTitle": "Danke für deine Meldung",
-  "callReportedBody": "Unsere Moderatoren prüfen sie. Möchtest du {name} auch blockieren? Dann kann dich die Person nicht mehr anrufen oder dir schreiben.",
-  "callReportedNotNow": "Nicht jetzt",
-  "callReportedBlock": "Blockieren"
+  "needsLocationDiscover": "Checke ein oder tippe auf den Titel, um ein Gebiet zu durchsuchen, und sieh Leute in der Nähe."
 }

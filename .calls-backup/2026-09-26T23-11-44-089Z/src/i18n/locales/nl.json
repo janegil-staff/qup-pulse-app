@@ -363,12 +363,5 @@
   "shareLocationSettingSub": "Als dit uit staat, wordt je locatie nooit verzonden. Je laatste check-in blijft tot je opnieuw incheckt.",
   "notNow": "Niet nu",
   "checkInRowLabel": "Check-in",
-  "needsLocationDiscover": "Check in, of tik op de titel om een gebied te bekijken, om mensen in de buurt te zien.",
-  "callReport": "Melden",
-  "callReportTitle": "Dit gesprek melden",
-  "callReportPrompt": "Wat is er gebeurd? Het gesprek stopt nadat je meldt.",
-  "callReportedTitle": "Bedankt voor je melding",
-  "callReportedBody": "Onze moderators bekijken het. Wil je {name} ook blokkeren? Dan kunnen ze je niet meer bellen of berichten sturen.",
-  "callReportedNotNow": "Niet nu",
-  "callReportedBlock": "Blokkeren"
+  "needsLocationDiscover": "Check in, of tik op de titel om een gebied te bekijken, om mensen in de buurt te zien."
 }
