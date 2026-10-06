@@ -43,7 +43,13 @@ export default function FollowersScreen({ route, navigation }) {
   const fetchPage = useCallback(
     async (before) => {
       const fn = isFollowers ? api.getFollowers : api.getFollowing;
-      return fn(userId, before ? { before } : undefined);
+      const data = await fn(userId, before ? { before } : undefined);
+      // Normalise here so both callers read one shape: tolerate a bare array
+      // or a list keyed by its own name (followers / following).
+      const users = Array.isArray(data)
+        ? data
+        : (data?.users ?? data?.[isFollowers ? "followers" : "following"] ?? []);
+      return { users, nextBefore: data?.nextBefore ?? null };
     },
     [userId, isFollowers],
   );

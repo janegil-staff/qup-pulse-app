@@ -132,6 +132,11 @@ export const api = {
   updateProfile: (b) => request('/users/me', { method: 'PATCH', body: b }),
   follow: (id) => request(`/users/${id}/follow`, { method: 'POST' }),
   unfollow: (id) => request(`/users/${id}/follow`, { method: 'DELETE' }),
+  // Follower / following lists, used by FollowersScreen. Cursor-paginated:
+  // pass { before } with the nextBefore from the previous page.
+  //   -> { users: [publicUser + followedByMe + isSelf], nextBefore }
+  getFollowers: (id, p) => request(`/users/${id}/followers${qs(p)}`),
+  getFollowing: (id, p) => request(`/users/${id}/following${qs(p)}`),
 
   getConversations: () => request('/chat/conversations'),
   openConversation: (userId) => request(`/chat/conversations/${userId}`, { method: 'POST' }),
